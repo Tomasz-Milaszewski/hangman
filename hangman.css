@@ -1,0 +1,17 @@
+.container {
+    border: 1px solid black;
+}
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    border: 1px solid black
+}

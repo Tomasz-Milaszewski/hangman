@@ -5,12 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/hangman.css">
     <title>Hangman</title>
 </head>
 
 <body>
-    <canvas id="canvas" width="150" height="200"></canvas>
+    <div class="container">
+        <div class="top-container">
+            <canvas id="canvas" width="150" height="200"></canvas>
+            <div class="button-container">
+                <button class="play-button">Play</button>
+                <!-- <button class="restart-button">Restart</button> -->
+            </div>
+        </div>
+        <div class="bottom-container">
+            <p class="password">Your lucky word:</p>
+            <p class="">Your letter:</p>
+            <p class="password">Letters used:</p>
+            <p class="password">Letters left:</p>
+            <p class="password">Round:</p>
+        </div>
+    </div>
     <script src="/drawGallows.js"></script>
+    <script src="/manageGame.js"></script>
 </body>
 
 </html>
