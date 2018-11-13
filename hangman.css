@@ -15,3 +15,9 @@
 button {
     border: 1px solid black
 }
+span {
+    display: inline-block;
+    width: 10px;
+    border-bottom: 1px solid black;
+    margin: 0px 5px
+}

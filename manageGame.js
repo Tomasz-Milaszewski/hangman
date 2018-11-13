@@ -23,7 +23,7 @@ function getPassword() {
             for (let i = 0; i < password.length; i++) {
                 const letterBox = document.createElement('span');
                 const passwordBox = document.querySelector('.password');
-                letterBox.innerHTML = password[i];
+                letterBox.innerHTML = '';
                 passwordBox.appendChild(letterBox);
             }
         })
