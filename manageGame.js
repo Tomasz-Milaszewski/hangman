@@ -57,7 +57,7 @@ function handleValidInput(password, letter) {
     console.log(password)
     console.log(letter)
     for (let i = 0 ; i < password.length ; i++) {
-            if (letter === password[i]) {
+            if (letter.toLowerCase() === password[i]) {
                 let indexToShow = document.querySelector(`span:nth-child(${i+1})`)
                 console.log(indexToShow);
                 indexToShow.innerHTML = password[i];
