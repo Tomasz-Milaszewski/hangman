@@ -20,9 +20,22 @@ handleInput = function () {
             input.value = '';
             input.placeholder = "Your letter here";
             input.classList.remove('warning');
+            getPassword(handleLetterSubmission);
+
         }
     })
 }
-
 handleInput();
 
+function handleLetterSubmission(password) {
+    console.log(password);
+    for (let i = 0 ; i < password.length ; i++) {
+        if (input.value === password[i]) {
+            let indexToShow = document.querySelector(`.password:nth-child(${i})`)
+            indexToShow.innerHTML = password[i];
+        }
+    }
+    
+}
+
+//TODO: prevent double letter use 

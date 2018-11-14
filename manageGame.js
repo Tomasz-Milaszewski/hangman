@@ -15,11 +15,10 @@ function play() {
 }
 
 function setPassword(password) {
-    console.log(password);
     for (let i = 0; i < password.length; i++) {
         const letterBox = document.createElement('span');
         const passwordBox = document.querySelector('.password');
-        letterBox.innerHTML = password[i];
+        letterBox.innerHTML = '';
         passwordBox.appendChild(letterBox);
     }
 }
@@ -32,7 +31,6 @@ function getPassword(callback) {
             callback(password);
         })
 }
-
 
 
 
