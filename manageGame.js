@@ -45,6 +45,7 @@ function handleInput(password) {
             console.log('inside else')
             event.preventDefault();
             handleValidInput(password, input.value);
+            handleLetters(password, input.value);
             input.value = '';
             input.placeholder = "Your letter here";
             input.classList.remove('warning');
@@ -56,13 +57,25 @@ function handleValidInput(password, letter) {
     console.log('inside handleValidInput')
     console.log(password)
     console.log(letter)
-    for (let i = 0 ; i < password.length ; i++) {
-            if (letter.toLowerCase() === password[i]) {
-                let indexToShow = document.querySelector(`span:nth-child(${i+1})`)
-                console.log(indexToShow);
-                indexToShow.innerHTML = password[i];
-            }
+    for (let i = 0; i < password.length; i++) {
+        if (letter.toLowerCase() === password[i]) {
+            let indexToShow = document.querySelector(`span:nth-child(${i + 1})`)
+            console.log(indexToShow);
+            indexToShow.innerHTML = password[i];
         }
+    }
+}
+
+function handleLetters(password, letter) {
+    var lettersLeft = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var lettersLeftCount = lettersLeft.length;
+    var lettersUsed = [];
+    var lettersUsedCount = lettersUsed.length;
+
+    const lettersUsedSpan = document.createElement('span');
+    const lettersUsedPar = document.querySelector('.letters-used');
+    lettersUsedSpan.innerHTML = lettersUsed;
+    lettersUsedPar.appendChild(lettersUsedSpan);
 }
 
 function getPassword(callback) {
@@ -74,9 +87,6 @@ function getPassword(callback) {
         })
 }
 
-// var lettersLeft = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-// var lettersLeftCount = lettersLeft.length;
-// var lettersUsed = [];
-// var lettersUsedCount = lettersUsed.length;
+
 
 //TODO: prevent double letter use 
