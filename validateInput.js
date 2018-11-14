@@ -3,9 +3,11 @@ validateInput = function () {
     const input = document.querySelector(".letter-input")
 
     form.addEventListener('submit', (event) => {
-        if (input.value === '') {
+        if (input.value === '' || input.value.length > 1) {
+            console.log(input.value.length);
             event.preventDefault();
-            input.placeholder = "Please type a letter";
+            input.value='';
+            input.placeholder = "One english letter please";
             input.classList.add('warning');
         }
     })
