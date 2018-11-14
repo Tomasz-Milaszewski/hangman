@@ -21,3 +21,6 @@ span {
     border-bottom: 1px solid black;
     margin: 0px 5px
 }
+.warning::-webkit-input-placeholder {
+    color: red
+}
