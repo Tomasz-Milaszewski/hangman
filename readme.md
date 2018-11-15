@@ -2,7 +2,9 @@ This is a classic Hangman game.
 ### Rules
 
 * passwords are english nouns only
-* passwords and input are case insensitive
+* passwords and letter input are case insensitive
+* no special characters
+* you've got six tries before you... well, you-know-what
 
 ### Technologies
 

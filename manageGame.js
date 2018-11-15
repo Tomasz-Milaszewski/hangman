@@ -1,3 +1,4 @@
+var roundNumber = 0;
 var missedCounter = 0;
 
 function startGame() {
@@ -6,12 +7,21 @@ function startGame() {
         document.querySelectorAll('span').forEach(function (node) {
             node.remove();
         });
+        clearHangman()
         setStartValues();
         play();
         playButton.innerHTML = 'Restart';
+        missedCounter = 0;
+        roundNumber = 0;
     });
 }
 startGame();
+
+function clearHangman() {
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(100, 50, 40, 110)
+}
 
 function setStartValues() {
     const lettersUsedSpan = document.createElement('span');
@@ -63,8 +73,7 @@ function handleInput(password) {
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
     const reg = /^[a-z]+$/i;
-    var roundNumber = 0;
-
+    console.log(password);
     form.addEventListener('submit', (event) => {
         if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
             event.preventDefault();
@@ -120,9 +129,8 @@ function handleLetterCorrect(password, letter) {
     if (password.includes(letter)) { return }
     else {
         missedCounter = missedCounter + 1;
-        console.log(missedCounter)
-        var canvas = document.querySelector('#canvas');
-        var ctx = canvas.getContext('2d');
+        const canvas = document.querySelector('#canvas');
+        const ctx = canvas.getContext('2d');
         switch (missedCounter) {
             case 1:
                 ctx.beginPath();
@@ -131,32 +139,32 @@ function handleLetterCorrect(password, letter) {
                 break;
             case 2:
                 ctx.beginPath();
-                ctx.moveTo(120,70);
-                ctx.lineTo(120,120);
+                ctx.moveTo(120, 70);
+                ctx.lineTo(120, 120);
                 ctx.stroke();
                 break;
             case 3:
                 ctx.beginPath();
-                ctx.moveTo(120,70);
-                ctx.lineTo(100,110);
+                ctx.moveTo(120, 70);
+                ctx.lineTo(100, 110);
                 ctx.stroke();
                 break;
             case 4:
                 ctx.beginPath();
-                ctx.moveTo(120,70);
-                ctx.lineTo(140,110);
+                ctx.moveTo(120, 70);
+                ctx.lineTo(140, 110);
                 ctx.stroke();
                 break;
             case 5:
                 ctx.beginPath();
-                ctx.moveTo(120,120);
-                ctx.lineTo(100,160);
+                ctx.moveTo(120, 120);
+                ctx.lineTo(100, 160);
                 ctx.stroke();
                 break;
             case 6:
                 ctx.beginPath();
-                ctx.moveTo(120,120);
-                ctx.lineTo(140,160);
+                ctx.moveTo(120, 120);
+                ctx.lineTo(140, 160);
                 ctx.stroke();
                 break;
         }
