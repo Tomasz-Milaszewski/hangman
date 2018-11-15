@@ -65,7 +65,7 @@ function handleInput(password) {
             console.log('inside else')
             event.preventDefault();
             handleValidInput(password, input.value);
-            handleLettersUsedAndLeft(password, input.value);
+            handleLettersUsedAndLeft(input.value);
             input.value = '';
             input.placeholder = "Your letter here";
             input.classList.remove('warning');
@@ -90,18 +90,14 @@ function handleValidInput(password, letter) {
     }
 }
 
-function handleLettersUsedAndLeft(password, letter) {
+function handleLettersUsedAndLeft(letter) {
     let lettersUsedSpan = document.querySelector('p.letters-used span');
     let lettersUsed = lettersUsedSpan.innerHTML;
     lettersUsedSpan.innerHTML = (lettersUsed === '') ? letter : lettersUsed.concat(', ', letter);
 
     let lettersLeftSpan = document.querySelector('p.letters-left span');
-    lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
-
-
-
-
-
+    let lettersLeft = lettersLeftSpan.innerHTML.split(', ').filter(el => el !== letter).join(', ');
+    lettersLeftSpan.innerHTML = lettersLeft;
 }
 
 function getPassword(callback) {
