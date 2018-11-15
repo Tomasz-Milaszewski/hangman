@@ -18,11 +18,11 @@ function setStartValues() {
     lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
     const roundSpan = document.createElement('span');
     roundSpan.innerHTML = '';
-    
+
     const lettersUsedPar = document.querySelector('.letters-used');
     const lettersLeftPar = document.querySelector('.letters-left');
     const roundPar = document.querySelector('.round');
-    
+
     lettersUsedPar.appendChild(lettersUsedSpan);
     lettersLeftPar.appendChild(lettersLeftSpan);
     roundPar.appendChild(roundSpan);
@@ -65,11 +65,11 @@ function handleInput(password) {
             console.log('inside else')
             event.preventDefault();
             handleValidInput(password, input.value);
-            handleLetters(password, input.value);
+            handleLettersUsedAndLeft(password, input.value);
             input.value = '';
             input.placeholder = "Your letter here";
             input.classList.remove('warning');
-            
+
             roundNumber++;
             let roundSpan = document.querySelector('p.round span');
             roundSpan.innerHTML = roundNumber;
@@ -90,14 +90,15 @@ function handleValidInput(password, letter) {
     }
 }
 
-function handleLetters(password, letter) {
-        let lettersUsedSpan = document.querySelector('p.letters-used span');
-        lettersUsedSpan.innerHTML = `${letter}`;
-        
-        let lettersLeftSpan = document.querySelector('p.letters-left span');
-        lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
-        
-        
+function handleLettersUsedAndLeft(password, letter) {
+    let lettersUsedSpan = document.querySelector('p.letters-used span');
+    let lettersUsed = lettersUsedSpan.innerHTML;
+    lettersUsedSpan.innerHTML = (lettersUsed === '') ? letter : lettersUsed.concat(', ', letter);
+
+    let lettersLeftSpan = document.querySelector('p.letters-left span');
+    lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
+
+
 
 
 
