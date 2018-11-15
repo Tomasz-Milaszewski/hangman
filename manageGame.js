@@ -5,10 +5,28 @@ function startGame() {
             node.remove();
         });
         play();
+        setStartValues();
         playButton.innerHTML = 'Restart';
     });
 }
 startGame();
+
+function setStartValues() {
+    const lettersUsedSpan = document.createElement('span');
+    lettersUsedSpan.innerHTML = '';
+    const lettersLeftSpan = document.createElement('span');
+    lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
+    const roundSpan = document.createElement('span');
+    roundSpan.innerHTML = '';
+    
+    const lettersUsedPar = document.querySelector('.letters-used');
+    const lettersLeftPar = document.querySelector('.letters-left');
+    const roundPar = document.querySelector('.round');
+    
+    lettersUsedPar.appendChild(lettersUsedSpan);
+    lettersLeftPar.appendChild(lettersLeftSpan);
+    roundPar.appendChild(roundSpan);
+}
 
 function play() {
     getPassword(manageGame);
@@ -23,6 +41,7 @@ function displayEmptyPassword(password) {
     for (let i = 0; i < password.length; i++) {
         const letterBox = document.createElement('span');
         const passwordBox = document.querySelector('.password');
+        letterBox.classList.add('password-letter-span');
         letterBox.innerHTML = '';
         passwordBox.appendChild(letterBox);
     }

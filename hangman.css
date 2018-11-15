@@ -16,10 +16,13 @@ button {
     border: 1px solid black
 }
 span {
+
+}
+.password-letter-span {
     display: inline-block;
     width: 10px;
+    margin: 0px 5px;
     border-bottom: 1px solid black;
-    margin: 0px 5px
 }
 .warning::-webkit-input-placeholder {
     color: red
