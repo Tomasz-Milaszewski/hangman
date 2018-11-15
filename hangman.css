@@ -27,3 +27,6 @@ span {
 .warning::-webkit-input-placeholder {
     color: red
 }
+.info::-webkit-input-placeholder {
+    color: blue
+}

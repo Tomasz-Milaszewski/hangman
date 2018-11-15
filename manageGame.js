@@ -60,19 +60,27 @@ function handleInput(password) {
             input.value = '';
             input.placeholder = "One english letter please";
             input.classList.add('warning');
-        }
-        else {
-            console.log('inside else')
-            event.preventDefault();
-            handleValidInput(password, input.value);
-            handleLettersUsedAndLeft(input.value);
-            input.value = '';
-            input.placeholder = "Your letter here";
-            input.classList.remove('warning');
+        } else {
+            if (document.querySelector('p.letters-used span').innerHTML.includes(input.value)) {
+                event.preventDefault();
+                input.value = '';
+                input.placeholder = "Wake up! It's been used!";
+                input.classList.add('info');
+            }
+            else {
+                console.log('inside else')
+                event.preventDefault();
+                handleValidInput(password, input.value);
+                handleLettersUsedAndLeft(input.value);
+                input.value = '';
+                input.placeholder = "Your letter here";
+                input.classList.remove('warning');
+                input.classList.remove('info');
 
-            roundNumber++;
-            let roundSpan = document.querySelector('p.round span');
-            roundSpan.innerHTML = roundNumber;
+                roundNumber++;
+                let roundSpan = document.querySelector('p.round span');
+                roundSpan.innerHTML = roundNumber;
+            }
         }
     })
 }
