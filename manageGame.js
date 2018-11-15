@@ -52,6 +52,7 @@ function handleInput(password) {
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
     const reg = /^[a-z]+$/i;
+    var roundNumber = 0;
 
     form.addEventListener('submit', (event) => {
         if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
@@ -68,6 +69,10 @@ function handleInput(password) {
             input.value = '';
             input.placeholder = "Your letter here";
             input.classList.remove('warning');
+            
+            roundNumber++;
+            let roundSpan = document.querySelector('p.round span');
+            roundSpan.innerHTML = roundNumber;
         }
     })
 }
@@ -86,15 +91,16 @@ function handleValidInput(password, letter) {
 }
 
 function handleLetters(password, letter) {
-    var lettersLeft = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    var lettersLeftCount = lettersLeft.length;
-    var lettersUsed = [];
-    var lettersUsedCount = lettersUsed.length;
+        let lettersUsedSpan = document.querySelector('p.letters-used span');
+        lettersUsedSpan.innerHTML = `${letter}`;
+        
+        let lettersLeftSpan = document.querySelector('p.letters-left span');
+        lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
+        
+        
 
-    const lettersUsedSpan = document.createElement('span');
-    const lettersUsedPar = document.querySelector('.letters-used');
-    lettersUsedSpan.innerHTML = lettersUsed;
-    lettersUsedPar.appendChild(lettersUsedSpan);
+
+
 }
 
 function getPassword(callback) {
