@@ -1,11 +1,13 @@
+var missedCounter = 0;
+
 function startGame() {
     const playButton = document.querySelector('.play-button')
     playButton.addEventListener('click', () => {
         document.querySelectorAll('span').forEach(function (node) {
             node.remove();
         });
-        play();
         setStartValues();
+        play();
         playButton.innerHTML = 'Restart';
     });
 }
@@ -30,6 +32,15 @@ function setStartValues() {
 
 function play() {
     getPassword(manageGame);
+}
+
+function getPassword(callback) {
+    fetch('https://hangman-25d5c.firebaseio.com/nouns.json')
+        .then(response => response.json())
+        .then(passwords => {
+            let password = passwords[Math.floor(Math.random() * passwords.length)];
+            callback(password);
+        })
 }
 
 function manageGame(password) {
@@ -68,10 +79,10 @@ function handleInput(password) {
                 input.classList.add('info');
             }
             else {
-                console.log('inside else')
                 event.preventDefault();
                 handleValidInput(password, input.value);
                 handleLettersUsedAndLeft(input.value);
+                handleLetterCorrect(password, input.value);
                 input.value = '';
                 input.placeholder = "Your letter here";
                 input.classList.remove('warning');
@@ -86,13 +97,9 @@ function handleInput(password) {
 }
 
 function handleValidInput(password, letter) {
-    console.log('inside handleValidInput')
-    console.log(password)
-    console.log(letter)
     for (let i = 0; i < password.length; i++) {
         if (letter.toLowerCase() === password[i]) {
             let indexToShow = document.querySelector(`span:nth-child(${i + 1})`)
-            console.log(indexToShow);
             indexToShow.innerHTML = password[i];
         }
     }
@@ -108,15 +115,51 @@ function handleLettersUsedAndLeft(letter) {
     lettersLeftSpan.innerHTML = lettersLeft;
 }
 
-function getPassword(callback) {
-    fetch('https://hangman-25d5c.firebaseio.com/nouns.json')
-        .then(response => response.json())
-        .then(passwords => {
-            let password = passwords[Math.floor(Math.random() * passwords.length)];
-            callback(password);
-        })
+
+function handleLetterCorrect(password, letter) {
+    if (password.includes(letter)) { return }
+    else {
+        missedCounter = missedCounter + 1;
+        console.log(missedCounter)
+        var canvas = document.querySelector('#canvas');
+        var ctx = canvas.getContext('2d');
+        switch (missedCounter) {
+            case 1:
+                ctx.beginPath();
+                ctx.arc(120, 60, 10, 0, Math.PI * 2, true)
+                ctx.stroke();
+                break;
+            case 2:
+                ctx.beginPath();
+                ctx.moveTo(120,70);
+                ctx.lineTo(120,120);
+                ctx.stroke();
+                break;
+            case 3:
+                ctx.beginPath();
+                ctx.moveTo(120,70);
+                ctx.lineTo(100,110);
+                ctx.stroke();
+                break;
+            case 4:
+                ctx.beginPath();
+                ctx.moveTo(120,70);
+                ctx.lineTo(140,110);
+                ctx.stroke();
+                break;
+            case 5:
+                ctx.beginPath();
+                ctx.moveTo(120,120);
+                ctx.lineTo(100,160);
+                ctx.stroke();
+                break;
+            case 6:
+                ctx.beginPath();
+                ctx.moveTo(120,120);
+                ctx.lineTo(140,160);
+                ctx.stroke();
+                break;
+        }
+    }
 }
 
-
-
-//TODO: prevent double letter use 
