@@ -1,3 +1,7 @@
+body {
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+}
+
 .container {
     border: 1px solid black;
 }
@@ -13,7 +17,8 @@
     align-items: center;
 }
 button {
-    border: 1px solid black
+    border: 1px solid black;
+    font-family: 'Open Sans', 'Verdana', sans-serif;
 }
 span {
 
@@ -25,8 +30,13 @@ span {
     border-bottom: 1px solid black;
 }
 .warning::-webkit-input-placeholder {
-    color: red
+    color: red;
+    font-family: 'Open Sans', 'Verdana', sans-serif;
 }
 .info::-webkit-input-placeholder {
-    color: blue
+    color: blue;
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+}
+::-webkit-input-placeholder {
+    font-family: 'Open Sans', 'Verdana', sans-serif;
 }
