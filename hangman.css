@@ -19,9 +19,10 @@ body {
 button {
     border: 1px solid black;
     font-family: 'Open Sans', 'Verdana', sans-serif;
-}
-span {
-
+    font-size: 16px;
+    border-radius: 0.3em;
+    padding: 0.3em;
+    width: 100px;
 }
 .password-letter-span {
     display: inline-block;

@@ -1,6 +1,10 @@
 function drawGallows() {
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
+    
+    ctx.strokeStyle = 'brown';
+    ctx.lineWidth = 5;
+    
     ctx.beginPath();
     ctx.moveTo(20, 180);
     ctx.lineTo(40, 160);

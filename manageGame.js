@@ -130,6 +130,8 @@ function handleLetterCorrect(password, letter) {
         missedCounter = missedCounter + 1;
         const canvas = document.querySelector('#canvas');
         const ctx = canvas.getContext('2d');
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 3;
         switch (missedCounter) {
             case 1:
                 ctx.beginPath();
