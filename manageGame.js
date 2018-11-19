@@ -30,14 +30,18 @@ function setStartValues() {
     lettersLeftSpan.innerHTML = 'A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z';
     const roundSpan = document.createElement('span');
     roundSpan.innerHTML = '';
+    const errorsSpan = document.createElement('span');
+    errorsSpan.innerHTML = 6;
 
     const lettersUsedPar = document.querySelector('.letters-used');
     const lettersLeftPar = document.querySelector('.letters-left');
     const roundPar = document.querySelector('.round');
+    const errorsPar = document.querySelector('.errors');
 
     lettersUsedPar.appendChild(lettersUsedSpan);
     lettersLeftPar.appendChild(lettersLeftSpan);
     roundPar.appendChild(roundSpan);
+    errorsPar.appendChild(errorsSpan);
 }
 
 function play() {
@@ -128,10 +132,13 @@ function handleLetterCorrect(password, letter) {
     if (password.includes(letter.toUpperCase())) { return }
     else {
         missedCounter = missedCounter + 1;
+        let errorsSpan = document.querySelector('p.errors span');
+            errorsSpan.innerHTML = 6 - missedCounter;
         const canvas = document.querySelector('#canvas');
         const ctx = canvas.getContext('2d');
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
         switch (missedCounter) {
             case 1:
                 ctx.beginPath();

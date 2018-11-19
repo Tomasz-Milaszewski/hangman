@@ -22,7 +22,7 @@ button {
     font-size: 16px;
     border-radius: 0.3em;
     padding: 0.3em;
-    width: 100px;
+    width: 100%;
 }
 .password-letter-span {
     display: inline-block;

@@ -4,6 +4,7 @@ function drawGallows() {
     
     ctx.strokeStyle = 'brown';
     ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
     
     ctx.beginPath();
     ctx.moveTo(20, 180);
