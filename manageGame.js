@@ -27,7 +27,7 @@ function setStartValues() {
     const lettersUsedSpan = document.createElement('span');
     lettersUsedSpan.innerHTML = '';
     const lettersLeftSpan = document.createElement('span');
-    lettersLeftSpan.innerHTML = 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z';
+    lettersLeftSpan.innerHTML = 'A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z';
     const roundSpan = document.createElement('span');
     roundSpan.innerHTML = '';
 
@@ -48,7 +48,7 @@ function getPassword(callback) {
     fetch('https://hangman-25d5c.firebaseio.com/nouns.json')
         .then(response => response.json())
         .then(passwords => {
-            let password = passwords[Math.floor(Math.random() * passwords.length)];
+            let password = passwords[Math.floor(Math.random() * passwords.length)].toUpperCase();
             callback(password);
         })
 }
@@ -81,7 +81,7 @@ function handleInput(password) {
             input.placeholder = "One english letter please";
             input.classList.add('warning');
         } else {
-            if (document.querySelector('p.letters-used span').innerHTML.includes(input.value)) {
+            if (document.querySelector('p.letters-used span').innerHTML.includes(input.value.toUpperCase())) {
                 event.preventDefault();
                 input.value = '';
                 input.placeholder = "Wake up! It's been used!";
@@ -107,7 +107,7 @@ function handleInput(password) {
 
 function handleValidInput(password, letter) {
     for (let i = 0; i < password.length; i++) {
-        if (letter.toLowerCase() === password[i]) {
+        if (letter.toUpperCase() === password[i]) {
             let indexToShow = document.querySelector(`span:nth-child(${i + 1})`)
             indexToShow.innerHTML = password[i];
         }
@@ -117,16 +117,15 @@ function handleValidInput(password, letter) {
 function handleLettersUsedAndLeft(letter) {
     let lettersUsedSpan = document.querySelector('p.letters-used span');
     let lettersUsed = lettersUsedSpan.innerHTML;
-    lettersUsedSpan.innerHTML = (lettersUsed === '') ? letter : lettersUsed.concat(', ', letter);
+    lettersUsedSpan.innerHTML = (lettersUsed === '') ? letter.toUpperCase() : (lettersUsed.includes(letter.toUpperCase()) ? lettersUsed : lettersUsed.concat(', ', letter.toUpperCase()));
 
     let lettersLeftSpan = document.querySelector('p.letters-left span');
-    let lettersLeft = lettersLeftSpan.innerHTML.split(', ').filter(el => el !== letter).join(', ');
+    let lettersLeft = lettersLeftSpan.innerHTML.split(', ').filter(el => el !== letter.toUpperCase()).join(', ');
     lettersLeftSpan.innerHTML = lettersLeft;
 }
 
-
 function handleLetterCorrect(password, letter) {
-    if (password.includes(letter)) { return }
+    if (password.includes(letter.toUpperCase())) { return }
     else {
         missedCounter = missedCounter + 1;
         const canvas = document.querySelector('#canvas');

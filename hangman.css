@@ -29,14 +29,17 @@ span {
     margin: 0px 5px;
     border-bottom: 1px solid black;
 }
+::-webkit-input-placeholder {
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+    font-size: 16px;
+}
 .warning::-webkit-input-placeholder {
     color: red;
-    font-family: 'Open Sans', 'Verdana', sans-serif;
 }
 .info::-webkit-input-placeholder {
     color: blue;
-    font-family: 'Open Sans', 'Verdana', sans-serif;
 }
-::-webkit-input-placeholder {
+input {
     font-family: 'Open Sans', 'Verdana', sans-serif;
+    font-size: 16px;
 }
