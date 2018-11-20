@@ -1,13 +1,37 @@
+/* elements */
 body {
     font-family: 'Open Sans', 'Verdana', sans-serif;
+    font-size: 18px;
 }
-
+button {
+    border: 3px solid rgb(141, 93, 12);
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    border-radius: 0.3em;
+    padding: 0.3em 0.6em;
+    min-width: 40%;
+    margin: 10px;
+    background-color: rgb(243, 195, 114);
+    color: rgb(141, 93, 12);
+}
+input {
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+    font-size: 18px;
+    margin-left: 20px;
+}
+p {
+    margin-left: 20px;
+}
+/* classes */
 .container {
-    border: 1px solid black;
+    border: 5px solid rgb(141, 93, 12);
+    border-radius: 5px;
 }
 .top-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .button-container {
@@ -16,31 +40,20 @@ body {
     justify-content: center;
     align-items: center;
 }
-button {
-    border: 1px solid black;
-    font-family: 'Open Sans', 'Verdana', sans-serif;
-    font-size: 16px;
-    border-radius: 0.3em;
-    padding: 0.3em;
-    width: 100%;
-}
 .password-letter-span {
     display: inline-block;
     width: 10px;
     margin: 0px 5px;
     border-bottom: 1px solid black;
 }
+/* other */
 ::-webkit-input-placeholder {
     font-family: 'Open Sans', 'Verdana', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
 }
 .warning::-webkit-input-placeholder {
     color: red;
 }
 .info::-webkit-input-placeholder {
     color: blue;
-}
-input {
-    font-family: 'Open Sans', 'Verdana', sans-serif;
-    font-size: 16px;
 }

@@ -10,7 +10,7 @@ function startGame() {
         clearHangman()
         setStartValues();
         play();
-        playButton.innerHTML = 'Restart';
+        playButton.innerHTML = 'RESTART';
         missedCounter = 0;
         roundNumber = 0;
     });
