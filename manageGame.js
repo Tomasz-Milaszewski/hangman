@@ -13,6 +13,7 @@ function startGame() {
         playButton.innerHTML = 'RESTART';
         missedCounter = 0;
         roundNumber = 0;
+        document.querySelector('.info-container').style.display = 'none';
     });
 }
 startGame();
@@ -24,6 +25,8 @@ function clearHangman() {
 }
 
 function setStartValues() {
+    document.querySelector('.letter-input').disabled = false;
+
     const lettersUsedSpan = document.createElement('span');
     lettersUsedSpan.innerHTML = '';
     const lettersLeftSpan = document.createElement('span');
@@ -173,8 +176,13 @@ function handleLetterCorrect(password, letter) {
                 ctx.moveTo(120, 120);
                 ctx.lineTo(140, 160);
                 ctx.stroke();
+                gameover();
                 break;
         }
     }
 }
-
+function gameover() {
+    document.querySelector('.info-container').style.display = 'block';
+    document.querySelector('.info-container').innerHTML = 'Unlucky... try again ;-)'
+    document.querySelector('.letter-input').disabled = true;
+}
