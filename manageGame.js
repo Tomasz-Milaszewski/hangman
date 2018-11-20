@@ -117,9 +117,8 @@ function handleValidInput(password, letter) {
             let indexToShow = document.querySelector(`span:nth-child(${i + 1})`)
             indexToShow.innerHTML = password[i];
             const guessedSpans = document.querySelectorAll('.password span')
-            const guessedValues = Array.from(guessedSpans).map(el => el.innerHTML);
-            const guessed = guessedValues.join('')
-            if (guessed === password) {gameWin()}
+            const guessed = Array.from(guessedSpans).map(el => el.innerHTML).join('');
+            if (guessed === password) { gameWin() }
         }
     }
 }
