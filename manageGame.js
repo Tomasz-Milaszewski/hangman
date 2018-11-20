@@ -66,39 +66,41 @@ function manageGame(password) {
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
     const reg = /^[a-z]+$/i;
-    form.addEventListener('submit', function listener(event) {
-        const playButton = document.querySelector('.play-button')
-        playButton.addEventListener('click', () => {
-            form.removeEventListener('submit', listener)
-        });
-        if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
+
+function listener(event) {
+    if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
+        event.preventDefault();
+        input.value = '';
+        input.placeholder = "One english letter please";
+        input.classList.add('warning');
+    } else {
+        if (document.querySelector('p.letters-used span').innerHTML.includes(input.value.toUpperCase())) {
             event.preventDefault();
             input.value = '';
-            input.placeholder = "One english letter please";
-            input.classList.add('warning');
-        } else {
-            if (document.querySelector('p.letters-used span').innerHTML.includes(input.value.toUpperCase())) {
-                event.preventDefault();
-                input.value = '';
-                input.placeholder = "Wake up! It's been used!";
-                input.classList.add('info');
-            }
-            else {
-                event.preventDefault();
-                handleValidInput(password, input.value);
-                handleLettersUsedAndLeft(input.value);
-                handleLetterCorrect(password, input.value);
-                input.value = '';
-                input.placeholder = "Your letter here";
-                input.classList.remove('warning');
-                input.classList.remove('info');
-
-                roundNumber++;
-                let roundSpan = document.querySelector('p.round span');
-                roundSpan.innerHTML = roundNumber;
-            }
+            input.placeholder = "Wake up! It's been used!";
+            input.classList.add('info');
         }
-    })
+        else {
+            event.preventDefault();
+            handleValidInput(password, input.value);
+            handleLettersUsedAndLeft(input.value);
+            handleLetterCorrect(password, input.value);
+            input.value = '';
+            input.placeholder = "Your letter here";
+            input.classList.remove('warning');
+            input.classList.remove('info');
+            
+            roundNumber++;
+            let roundSpan = document.querySelector('p.round span');
+            roundSpan.innerHTML = roundNumber;
+        }
+    }
+}
+    form.addEventListener('submit', listener)
+    const playButton = document.querySelector('.play-button')
+    playButton.addEventListener('click', () => {
+        form.removeEventListener('submit', listener)
+    });
 }
 
 function displayEmptyPassword(password) {
