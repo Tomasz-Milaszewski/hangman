@@ -34,16 +34,13 @@ p {
     border: 5px solid rgb(141, 93, 12);
     border-radius: 5px;
 }
-.top-container {
+.top-container, .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .button-container {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 .password-letter-span {
     display: inline-block;

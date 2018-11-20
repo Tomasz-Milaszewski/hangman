@@ -26,25 +26,16 @@ function clearHangman() {
 
 function setStartValues() {
     document.querySelector('.letter-input').disabled = false;
+    createStartState('', '.letters-used');
+    createStartState('A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z', '.letters-left');
+    createStartState('', '.round');
+    createStartState(6, '.errors');
+}
 
-    const lettersUsedSpan = document.createElement('span');
-    lettersUsedSpan.innerHTML = '';
-    const lettersLeftSpan = document.createElement('span');
-    lettersLeftSpan.innerHTML = 'A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z';
-    const roundSpan = document.createElement('span');
-    roundSpan.innerHTML = '';
-    const errorsSpan = document.createElement('span');
-    errorsSpan.innerHTML = 6;
-
-    const lettersUsedPar = document.querySelector('.letters-used');
-    const lettersLeftPar = document.querySelector('.letters-left');
-    const roundPar = document.querySelector('.round');
-    const errorsPar = document.querySelector('.errors');
-
-    lettersUsedPar.appendChild(lettersUsedSpan);
-    lettersLeftPar.appendChild(lettersLeftSpan);
-    roundPar.appendChild(roundSpan);
-    errorsPar.appendChild(errorsSpan);
+function createStartState(content, parentSelector) {
+    const element = document.createElement('span')
+    element.innerHTML = content;
+    document.querySelector(parentSelector).appendChild(element)
 }
 
 function play() {
@@ -61,27 +52,24 @@ function getPassword(callback) {
 }
 
 function manageGame(password) {
-    console.log(password);
     displayEmptyPassword(password);
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
     const reg = /^[a-z]+$/i;
 
 function listener(event) {
+    event.preventDefault();
     if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
-        event.preventDefault();
         input.value = '';
         input.placeholder = "One english letter please";
         input.classList.add('warning');
     } else {
         if (document.querySelector('p.letters-used span').innerHTML.includes(input.value.toUpperCase())) {
-            event.preventDefault();
             input.value = '';
             input.placeholder = "Wake up! It's been used!";
             input.classList.add('info');
         }
         else {
-            event.preventDefault();
             handleValidInput(password, input.value);
             handleLettersUsedAndLeft(input.value);
             handleLetterCorrect(password, input.value);
@@ -120,7 +108,7 @@ function handleValidInput(password, letter) {
             indexToShow.innerHTML = password[i];
             const guessedSpans = document.querySelectorAll('.password span')
             const guessed = Array.from(guessedSpans).map(el => el.innerHTML).join('');
-            if (guessed === password) { gameWin() }
+            if (guessed === password) { gameEnd('Well done! Keep going :-)') }
         }
     }
 }
@@ -181,18 +169,14 @@ function handleLetterCorrect(password, letter) {
                 ctx.moveTo(120, 120);
                 ctx.lineTo(140, 160);
                 ctx.stroke();
-                gameover();
+                gameEnd('Unlucky... try again ;-)');
                 break;
         }
     }
 }
-function gameover() {
+
+function gameEnd(message) {
     document.querySelector('.info-container').style.display = 'block';
-    document.querySelector('.info-container').innerHTML = 'Unlucky... try again ;-)'
-    document.querySelector('.letter-input').disabled = true;
-}
-function gameWin() {
-    document.querySelector('.info-container').style.display = 'block';
-    document.querySelector('.info-container').innerHTML = 'Well done! Keep going :-)'
+    document.querySelector('.info-container').innerHTML = message
     document.querySelector('.letter-input').disabled = true;
 }
