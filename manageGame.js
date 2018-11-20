@@ -20,7 +20,7 @@ startGame();
 function clearHangman() {
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
-    ctx.clearRect(100, 50, 40, 110)
+    ctx.clearRect(95, 48, 50, 125)
 }
 
 function setStartValues() {
@@ -58,27 +58,16 @@ function getPassword(callback) {
 }
 
 function manageGame(password) {
-    displayEmptyPassword(password);
-    handleInput(password);
-}
-
-function displayEmptyPassword(password) {
-    for (let i = 0; i < password.length; i++) {
-        const letterBox = document.createElement('span');
-        const passwordBox = document.querySelector('.password');
-        letterBox.classList.add('password-letter-span');
-        letterBox.innerHTML = '';
-        passwordBox.appendChild(letterBox);
-    }
     console.log(password);
-}
-
-function handleInput(password) {
+    displayEmptyPassword(password);
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
     const reg = /^[a-z]+$/i;
-    console.log(password);
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', function listener(event) {
+        const playButton = document.querySelector('.play-button')
+        playButton.addEventListener('click', () => {
+            form.removeEventListener('submit', listener)
+        });
         if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
             event.preventDefault();
             input.value = '';
@@ -109,6 +98,16 @@ function handleInput(password) {
     })
 }
 
+function displayEmptyPassword(password) {
+    for (let i = 0; i < password.length; i++) {
+        const letterBox = document.createElement('span');
+        const passwordBox = document.querySelector('.password');
+        letterBox.classList.add('password-letter-span');
+        letterBox.innerHTML = '';
+        passwordBox.appendChild(letterBox);
+    }
+}
+
 function handleValidInput(password, letter) {
     for (let i = 0; i < password.length; i++) {
         if (letter.toUpperCase() === password[i]) {
@@ -133,7 +132,7 @@ function handleLetterCorrect(password, letter) {
     else {
         missedCounter = missedCounter + 1;
         let errorsSpan = document.querySelector('p.errors span');
-            errorsSpan.innerHTML = 6 - missedCounter;
+        errorsSpan.innerHTML = 6 - missedCounter;
         const canvas = document.querySelector('#canvas');
         const ctx = canvas.getContext('2d');
         ctx.strokeStyle = 'black';
