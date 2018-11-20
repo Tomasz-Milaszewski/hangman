@@ -21,6 +21,7 @@ input {
     font-family: 'Open Sans', 'Verdana', sans-serif;
     font-size: 18px;
     margin-left: 20px;
+    width: 90%;
 }
 p {
     margin-left: 20px;

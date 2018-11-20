@@ -116,6 +116,10 @@ function handleValidInput(password, letter) {
         if (letter.toUpperCase() === password[i]) {
             let indexToShow = document.querySelector(`span:nth-child(${i + 1})`)
             indexToShow.innerHTML = password[i];
+            const guessedSpans = document.querySelectorAll('.password span')
+            const guessedValues = Array.from(guessedSpans).map(el => el.innerHTML);
+            const guessed = guessedValues.join('')
+            if (guessed === password) {gameWin()}
         }
     }
 }
@@ -184,5 +188,10 @@ function handleLetterCorrect(password, letter) {
 function gameover() {
     document.querySelector('.info-container').style.display = 'block';
     document.querySelector('.info-container').innerHTML = 'Unlucky... try again ;-)'
+    document.querySelector('.letter-input').disabled = true;
+}
+function gameWin() {
+    document.querySelector('.info-container').style.display = 'block';
+    document.querySelector('.info-container').innerHTML = 'Well done! Keep going :-)'
     document.querySelector('.letter-input').disabled = true;
 }
