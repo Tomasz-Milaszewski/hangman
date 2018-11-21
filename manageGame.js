@@ -170,6 +170,7 @@ function handleLetterCorrect(password, letter) {
                 ctx.lineTo(140, 160);
                 ctx.stroke();
                 gameEnd('Unlucky... try again ;-)');
+                displayPassword(password);
                 break;
         }
     }
@@ -179,4 +180,10 @@ function gameEnd(message) {
     document.querySelector('.info-container').style.display = 'block';
     document.querySelector('.info-container').innerHTML = message
     document.querySelector('.letter-input').disabled = true;
+}
+function displayPassword(password) {
+    for (let i = 0; i < password.length; i++) {
+        const letterBox = document.querySelector(`span:nth-child(${i + 1})`);
+        letterBox.innerHTML = password[i];
+    }
 }
