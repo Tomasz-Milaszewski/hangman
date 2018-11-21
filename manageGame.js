@@ -10,6 +10,7 @@ function startGame() {
         clearHangman()
         setStartValues();
         play();
+        document.querySelector(".letter-input").focus();    
         playButton.innerHTML = 'RESTART';
         missedCounter = 0;
         roundNumber = 0;
