@@ -63,11 +63,13 @@ function listener(event) {
     event.preventDefault();
     if (input.value === '' || input.value.length > 1 || !reg.test(input.value)) {
         input.value = '';
+        input.classList.remove('info');
         input.placeholder = "One english letter please";
         input.classList.add('warning');
     } else {
         if (document.querySelector('p.letters-used span').innerHTML.includes(input.value.toUpperCase())) {
             input.value = '';
+            input.classList.remove('warning');
             input.placeholder = "Wake up! It's been used!";
             input.classList.add('info');
         }
