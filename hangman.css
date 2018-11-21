@@ -10,10 +10,10 @@ button, .info-container{
     letter-spacing: 0.2em;
     border-radius: 0.3em;
     padding: 0.3em 0.6em;
-    min-width: 40%;
     margin: 10px;
     background-color: rgb(243, 195, 114);
     color: rgb(141, 93, 12);
+    text-align: center;
 }
 button {
     cursor: pointer;
