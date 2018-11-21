@@ -53,6 +53,7 @@ function getPassword(callback) {
 }
 
 function manageGame(password) {
+    console.log(password);
     displayEmptyPassword(password);
     const form = document.querySelector(".letter-form")
     const input = document.querySelector(".letter-input")
@@ -109,7 +110,7 @@ function handleValidInput(password, letter) {
             indexToShow.innerHTML = password[i];
             const guessedSpans = document.querySelectorAll('.password span')
             const guessed = Array.from(guessedSpans).map(el => el.innerHTML).join('');
-            if (guessed === password) { gameEnd('Well done! Keep going :-)') }
+            if (guessed === password) { gameEnd('Well done! Keep going :-)', 'win') }
         }
     }
 }
@@ -132,7 +133,7 @@ function handleLetterCorrect(password, letter) {
         errorsSpan.innerHTML = 6 - missedCounter;
         const canvas = document.querySelector('#canvas');
         const ctx = canvas.getContext('2d');
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = 'rgb(9, 83, 200)';
         ctx.lineWidth = 3;
         ctx.lineCap = 'round';
         switch (missedCounter) {
@@ -177,9 +178,13 @@ function handleLetterCorrect(password, letter) {
     }
 }
 
-function gameEnd(message) {
-    document.querySelector('.info-container').style.display = 'block';
-    document.querySelector('.info-container').innerHTML = message
+function gameEnd(message,result) {
+    const infoBox = document.querySelector('.info-container')
+    infoBox.classList.remove('game-won');
+    infoBox.classList.remove('game-lost');
+    result === 'win' ? infoBox.classList.add('game-won') : infoBox.classList.add('game-lost')
+    infoBox.style.display = 'block';
+    infoBox.innerHTML = message
     document.querySelector('.letter-input').disabled = true;
 }
 function displayPassword(password) {

@@ -21,6 +21,16 @@ button {
 .info-container {
     display: none;
 }
+.game-lost {
+    background-color: rgb(255, 185, 185);
+    color: rgb(237, 36, 41);
+    border: 3px solid rgb(237, 36, 41);
+}
+.game-won {
+    background-color: rgb(152, 179, 222);
+    color: rgb(9, 83, 200);
+    border: 3px solid rgb(9, 83, 200);
+}
 input {
     font-family: 'Open Sans', 'Verdana', sans-serif;
     font-size: 18px;
@@ -54,8 +64,8 @@ p {
     font-size: 18px;
 }
 .warning::-webkit-input-placeholder {
-    color: red;
+    color: rgb(237, 36, 41);
 }
 .info::-webkit-input-placeholder {
-    color: blue;
+    color: rgb(9, 83, 200);
 }
